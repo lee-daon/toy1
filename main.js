@@ -8,7 +8,6 @@ const endScreen = document.getElementById('end-screen');
 const questionContainer = document.getElementById('question-container');
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
-const livesContainer = document.getElementById('lives');
 const statsContainer = document.getElementById('stats');
 const timerDisplay = document.getElementById('timer-display');
 const progressBar = document.getElementById('progress-bar');
@@ -22,7 +21,6 @@ const endMessage = document.getElementById('end-message');
 const bubbleContainer = document.querySelector('.bubble-container');
 
 let currentQuestionIndex = 0;
-let lives = 3;
 const totalQuestions = questions.length;
 let gameStartTime = null;
 let timerInterval = null;
@@ -33,13 +31,11 @@ restartButton.addEventListener('click', startGame);
 function startGame() {
     console.log('게임 시작!');
     currentQuestionIndex = 0;
-    lives = 3;
     startScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
-    statsContainer.classList.remove('hidden'); // 하트 표시
+    statsContainer.classList.remove('hidden'); // 타이머 표시
     progressBar.classList.remove('hidden'); // 진행도 바 표시
-    updateLives();
     updateProgress();
     resetCharacterPosition();
     stopBubbles(); // 이전 버블들 정리
@@ -66,7 +62,7 @@ function displayQuestion() {
     
     if (currentQuestionIndex >= totalQuestions) {
         console.log('모든 질문 완료, 게임 종료');
-        endGame(true);
+        endGame();
         return;
     }
 
@@ -166,13 +162,10 @@ function selectAnswer(selectedOption) {
             if (currentQuestionIndex < totalQuestions) {
                 displayQuestion();
             } else {
-                endGame(true);
+                endGame();
             }
         });
     } else {
-        lives--;
-        updateLives();
-        
         // 틀렸을 때 아귀가 당황하는 효과
         anglerfish.style.transform = 'scale(1.2) rotate(-5deg)';
         setTimeout(() => {
@@ -182,17 +175,11 @@ function selectAnswer(selectedOption) {
             }, 200);
         }, 200);
         
-        if (lives > 0) {
-            showMessage(messages.wrong, displayQuestion);
-        } else {
-            endGame(false);
-        }
+        showMessage(messages.wrong, displayQuestion);
     }
 }
 
-function updateLives() {
-    livesContainer.innerHTML = '<span>❤️</span>'.repeat(lives);
-}
+// 목숨 시스템 제거됨
 
 function moveCharacter() {
     // 아귀는 고정 위치에 유지하고, 대신 진행도 바로 진행 상황 표현
@@ -257,22 +244,18 @@ function showMessage(text, callback) {
     }, 2000);
 }
 
-function endGame(isWin) {
+function endGame() {
     gameScreen.classList.add('hidden');
-    statsContainer.classList.add('hidden'); // 하트 숨김
+    statsContainer.classList.add('hidden'); // 타이머 숨김
     progressBar.classList.add('hidden'); // 진행도 바 숨김
     questionContainer.classList.add('hidden'); // 질문 숨김
     endScreen.classList.remove('hidden');
     stopTimer(); // 타이머 정지
     
-    if (isWin) {
-        const elapsed = Date.now() - gameStartTime;
-        const minutes = Math.floor(elapsed / 60000);
-        const seconds = Math.floor((elapsed % 60000) / 1000);
-        endMessage.textContent = `${messages.gameWin} (완주 시간: ${minutes}:${seconds.toString().padStart(2, '0')})`;
-    } else {
-        endMessage.textContent = messages.gameOver;
-    }
+    const elapsed = Date.now() - gameStartTime;
+    const minutes = Math.floor(elapsed / 60000);
+    const seconds = Math.floor((elapsed % 60000) / 1000);
+    endMessage.textContent = `${messages.gameWin} (완주 시간: ${minutes}:${seconds.toString().padStart(2, '0')})`;
     stopBubbles();
 }
 

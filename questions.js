@@ -1,10 +1,9 @@
 // 아귀의 대사들
 export const messages = {
-    gameStart: "a",
-    correct: "a",
-    wrong: "a",
-    gameWin: "a",
-    gameOver: "a"
+    gameStart: "실수로 그물에 잡힌 아귀가 탈출했어!! 아귀가 최대한 빨리 심해로 내려갈 수 있도록 도와줘!!!",
+    correct: "정답! 다음단계로!",
+    wrong: "꽝! 다시 생각해봐!",
+    gameWin: "드디어 심해에 도착!!"
 };
 
 // 원래 질문 리스트의 역순으로 진행
