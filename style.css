@@ -47,6 +47,23 @@ body, html {
     background-color: #357abd;
 }
 
+#github-link {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#github-link a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+#github-link a:hover {
+    text-decoration: underline;
+}
+
 .hidden {
     display: none;
 }

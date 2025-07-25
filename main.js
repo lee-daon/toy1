@@ -24,12 +24,12 @@ let currentQuestionIndex = 0;
 const totalQuestions = questions.length;
 let gameStartTime = null;
 let timerInterval = null;
+let isProcessingAnswer = false; // 답안 처리 중인지 확인
 
 startButton.addEventListener('click', startGame);
 restartButton.addEventListener('click', startGame);
 
 function startGame() {
-    console.log('게임 시작!');
     currentQuestionIndex = 0;
     startScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
@@ -41,7 +41,6 @@ function startGame() {
     stopBubbles(); // 이전 버블들 정리
 
     showMessageWithButton(messages.gameStart, messages.helpButton, () => {
-        console.log('도와기 버튼 클릭 - 게임 시작');
         startTimer(); // 도와기 버튼 클릭 시 타이머 시작
         
         // 아귀가 커졌다가 원래 크기로
@@ -49,7 +48,6 @@ function startGame() {
         setTimeout(() => {
             anglerfish.style.transform = 'scale(1)';
             setTimeout(() => {
-                console.log('아귀 애니메이션 후 질문 표시');
                 displayQuestion();
                 // 평상시 거품 생성 제거
             }, 500);
@@ -58,20 +56,14 @@ function startGame() {
 }
 
 function displayQuestion() {
-    console.log('displayQuestion 호출됨, currentQuestionIndex:', currentQuestionIndex);
-    console.log('totalQuestions:', totalQuestions);
-    
     if (currentQuestionIndex >= totalQuestions) {
-        console.log('모든 질문 완료, 게임 종료');
         endGame();
         return;
     }
 
     const question = questions[currentQuestionIndex];
-    console.log('현재 질문:', question);
     
     if (!question) {
-        console.error('질문을 찾을 수 없습니다:', currentQuestionIndex);
         return;
     }
     
@@ -147,24 +139,21 @@ function displayQuestion() {
         });
     }
 
-    console.log('질문 컨테이너 표시');
-    console.log('questionContainer 요소:', questionContainer);
-    
     // 확실히 hidden 클래스 제거
     questionContainer.classList.remove('hidden');
     questionContainer.className = questionContainer.className.replace('hidden', '');
     questionContainer.style.display = 'block';
     questionContainer.style.visibility = 'visible';
     questionContainer.style.opacity = '1';
-    
-    console.log('질문 컨테이너 classList:', questionContainer.classList);
-    console.log('질문 컨테이너 style.display:', questionContainer.style.display);
 }
 
 function selectAnswer(selectedOption) {
+    if (isProcessingAnswer) return; // 이미 처리 중이면 무시
+    
     const correct = selectedOption === questions[currentQuestionIndex].answer;
 
     if (correct) {
+        isProcessingAnswer = true; // 처리 시작
         currentQuestionIndex++;
         moveCharacter(); // 메시지와 동시에 이펙트 시작
         showMessage(messages.correct, () => {
@@ -173,8 +162,10 @@ function selectAnswer(selectedOption) {
             } else {
                 endGame();
             }
+            isProcessingAnswer = false; // 처리 완료
         });
     } else {
+        isProcessingAnswer = true; // 처리 시작
         // 틀렸을 때 아귀가 당황하는 효과
         anglerfish.style.transform = 'scale(1.2) rotate(-5deg)';
         setTimeout(() => {
@@ -184,7 +175,10 @@ function selectAnswer(selectedOption) {
             }, 200);
         }, 200);
         
-        showMessage(messages.wrong, displayQuestion);
+        showMessage(messages.wrong, () => {
+            displayQuestion();
+            isProcessingAnswer = false; // 처리 완료
+        });
     }
 }
 
@@ -200,8 +194,6 @@ function moveCharacter() {
     setTimeout(() => {
         anglerfish.style.transform = 'scale(1) translateY(0px)'; // 원래대로 복귀
     }, 500);
-    
-    console.log(`진행도: ${currentQuestionIndex}/${totalQuestions}`);
 }
 
 function updateProgress() {
@@ -239,13 +231,11 @@ function resetCharacterPosition() {
 }
 
 function showMessage(text, callback) {
-    console.log('showMessage 호출됨:', text);
     questionContainer.classList.add('hidden');
     messageText.textContent = text;
     messageBox.classList.remove('hidden');
 
     setTimeout(() => {
-        console.log('메시지 타이머 완료, 콜백 실행');
         messageBox.classList.add('hidden');
         if (callback) {
             callback();
@@ -254,7 +244,6 @@ function showMessage(text, callback) {
 }
 
 function showMessageWithButton(text, buttonText, callback) {
-    console.log('showMessageWithButton 호출됨:', text);
     questionContainer.classList.add('hidden');
     
     // 메시지 텍스트 설정

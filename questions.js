@@ -48,5 +48,65 @@ export const questions = [
         question: "질문 8",
         options: ["a", "b", "c"],
         answer: "a"
+    },
+    {
+        question: "질문 3",
+        options: ["a", "b", "c"],
+        answer: "a"
+    },
+    {
+        question: "질문 4",
+        options: ["a", "b", "c"],
+        answer: "a"
+    },
+    {
+        question: "질문 5",
+        type: "input", // 인풋 타입 질문
+        answer: "a"
+    },
+    {
+        question: "질문 6",
+        options: ["a", "b", "c"],
+        answer: "a"
+    },
+    {
+        question: "질문 7",
+        type: "input", // 인풋 타입 질문
+        answer: "a"
+    },
+    {
+        question: "질문 8",
+        options: ["a", "b", "c"],
+        answer: "a"
+    },
+    {
+        question: "질문 3",
+        options: ["a", "b", "c"],
+        answer: "a"
+    },
+    {
+        question: "질문 4",
+        options: ["a", "b", "c"],
+        answer: "a"
+    },
+    {
+        question: "질문 5",
+        type: "input", // 인풋 타입 질문
+        answer: "a"
+    },
+    {
+        question: "질문 6",
+        options: ["a", "b", "c"],
+        answer: "a"
+    },
+    {
+        question: "질문 7",
+        type: "input", // 인풋 타입 질문
+        answer: "a"
+    },
+    {
+        question: "질문 8",
+        options: ["a", "b", "c"],
+        answer: "a"
     }
 ]; 
