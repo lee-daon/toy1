@@ -80,21 +80,29 @@ function displayQuestion() {
     if (question.type === 'input') {
         // 인풋 타입 질문
         const inputContainer = document.createElement('div');
-        inputContainer.style.marginTop = '20px';
+        inputContainer.style.cssText = `
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        `;
         
         const input = document.createElement('input');
         input.type = 'text';
         input.placeholder = '답을 입력하세요';
         input.style.cssText = `
-            width: 100%;
-            max-width: 100%;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
             box-sizing: border-box;
             padding: 12px 15px;
             font-size: clamp(1rem, 2.5vw, 1.1rem);
             border: 2px solid #4a90e2;
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 10px;
             outline: none;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -222,7 +230,7 @@ function stopTimer() {
 }
 
 function resetCharacterPosition() {
-    characterContainer.style.top = '50%';
+    characterContainer.style.top = '40%';
     characterContainer.style.left = '50%';
     characterContainer.style.transform = 'translate(-50%, -50%)';
     gameContainer.style.transform = 'none'; // 줌 효과 제거

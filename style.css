@@ -88,7 +88,7 @@ body, html {
 
 #character-container {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: transform 0.5s ease-in-out;
@@ -102,7 +102,7 @@ body, html {
 
 #message-box {
     position: fixed;
-    top: calc(10% + 160px);
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 255, 255, 0.95);
@@ -122,6 +122,8 @@ body, html {
     transform: translateX(-50%);
     width: 80%;
     max-width: 600px;
+    max-height: 33vh;
+    overflow-y: auto;
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 20px;
@@ -134,12 +136,14 @@ body, html {
 #options-container {
     margin-top: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
 }
 
 .option-button {
-    padding: 15px;
+    padding: 15px 25px;
     font-size: 1.1em;
     cursor: pointer;
     border: 2px solid #4a90e2;
@@ -147,6 +151,8 @@ body, html {
     color: white;
     border-radius: 10px;
     transition: background-color 0.3s, color 0.3s;
+    flex: 0 1 auto;
+    min-width: 80px;
 }
 
 .option-button:hover {
@@ -194,8 +200,9 @@ body, html {
     }
     
     .option-button {
-        padding: 12px;
+        padding: 12px 20px;
         font-size: 1rem;
+        min-width: 70px;
     }
     
     #stats {
@@ -210,6 +217,11 @@ body, html {
         top: 15px;
         left: 15px;
     }
+    
+    #message-box {
+        top: 3%;
+        width: 280px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -221,8 +233,9 @@ body, html {
     }
     
     .option-button {
-        padding: 10px;
+        padding: 10px 15px;
         font-size: 0.9rem;
+        min-width: 60px;
     }
     
     #stats {
@@ -240,5 +253,11 @@ body, html {
     
     #anglerfish {
         width: 120px;
+    }
+    
+    #message-box {
+        top: 2%;
+        width: 250px;
+        font-size: 1rem;
     }
 } 
