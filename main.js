@@ -39,10 +39,11 @@ function startGame() {
     updateProgress();
     resetCharacterPosition();
     stopBubbles(); // 이전 버블들 정리
-    startTimer(); // 타이머 시작
 
-    showMessage(messages.gameStart, () => {
-        console.log('메시지 후 아귀 크기 변화 시작');
+    showMessageWithButton(messages.gameStart, messages.helpButton, () => {
+        console.log('도와기 버튼 클릭 - 게임 시작');
+        startTimer(); // 도와기 버튼 클릭 시 타이머 시작
+        
         // 아귀가 커졌다가 원래 크기로
         anglerfish.style.transform = 'scale(1.5)';
         setTimeout(() => {
@@ -250,6 +251,43 @@ function showMessage(text, callback) {
             callback();
         }
     }, 2000);
+}
+
+function showMessageWithButton(text, buttonText, callback) {
+    console.log('showMessageWithButton 호출됨:', text);
+    questionContainer.classList.add('hidden');
+    
+    // 메시지 텍스트 설정
+    messageText.textContent = text;
+    
+    // 버튼 생성
+    const helpButton = document.createElement('button');
+    helpButton.textContent = buttonText;
+    helpButton.style.cssText = `
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        border: 2px solid #4a90e2;
+        background-color: #4a90e2;
+        color: white;
+        border-radius: 10px;
+        transition: background-color 0.3s;
+    `;
+    
+    helpButton.addEventListener('click', () => {
+        messageBox.classList.add('hidden');
+        messageText.innerHTML = ''; // 버튼 제거
+        if (callback) {
+            callback();
+        }
+    });
+    
+    // 버튼을 메시지 박스에 추가
+    messageText.appendChild(document.createElement('br'));
+    messageText.appendChild(helpButton);
+    
+    messageBox.classList.remove('hidden');
 }
 
 function endGame() {
