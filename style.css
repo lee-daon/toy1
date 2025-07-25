@@ -1,0 +1,246 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background: url('image.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1s ease-in-out;
+}
+
+#start-screen, #end-screen {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 20px;
+    color: white;
+}
+
+#start-screen h1, #end-screen h2 {
+    margin-bottom: 20px;
+}
+
+#start-button, #restart-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: #4a90e2;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+#start-button:hover, #restart-button:hover {
+    background-color: #357abd;
+}
+
+.hidden {
+    display: none;
+}
+
+#stats {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2em;
+    z-index: 1001;
+    text-align: right;
+}
+
+#timer {
+    font-size: 0.7em;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#progress-bar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    z-index: 1001;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #4a90e2, #87ceeb);
+    border-radius: 8px;
+    transition: width 1s ease-in-out;
+}
+
+#character-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s ease-in-out;
+}
+
+#anglerfish {
+    width: 150px;
+    height: auto;
+    transition: transform 0.5s ease-in-out;
+}
+
+#message-box {
+    position: fixed;
+    top: calc(10% + 160px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    font-size: 1.1em;
+    z-index: 1001;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#question-container {
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+#options-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-button {
+    padding: 15px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border: 2px solid #4a90e2;
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.option-button:hover {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.bubble-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -50px;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: rise 10s infinite ease-in;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* 태블릿 및 모바일 대응 */
+@media screen and (max-width: 1024px) {
+    #question-container {
+        width: 90%;
+        padding: 15px;
+        bottom: 3%;
+    }
+    
+    .option-button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    
+    #stats {
+        font-size: 1.5em;
+        top: 15px;
+        right: 15px;
+    }
+    
+    #progress-bar {
+        width: 150px;
+        height: 18px;
+        top: 15px;
+        left: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #question-container {
+        width: 95%;
+        padding: 12px;
+        bottom: 2%;
+        font-size: 0.9rem;
+    }
+    
+    .option-button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    #stats {
+        font-size: 1.2em;
+        top: 10px;
+        right: 10px;
+    }
+    
+    #progress-bar {
+        width: 120px;
+        height: 16px;
+        top: 10px;
+        left: 10px;
+    }
+    
+    #anglerfish {
+        width: 120px;
+    }
+} 

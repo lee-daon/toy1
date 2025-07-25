@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아귀의 바다 탐험</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 줌인 영향을 받지 않는 UI 요소들 -->
+    <div id="stats" class="hidden">
+        <div id="lives">
+            <span>❤️</span><span>❤️</span><span>❤️</span>
+        </div>
+        <div id="timer">⏱️ <span id="timer-display">00:00</span></div>
+    </div>
+    
+    <div id="progress-bar" class="hidden">
+        <div id="progress-fill"></div>
+    </div>
+    
+    <div id="question-container" class="hidden">
+        <p id="question-text"></p>
+        <div id="options-container">
+            <!-- Options will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- 줌인 효과를 받는 게임 컨테이너 -->
+    <div id="game-container">
+        <div id="start-screen">
+            <h1>아귀의 바다 탐험</h1>
+            <button id="start-button">게임 시작</button>
+        </div>
+
+        <div id="game-screen" class="hidden">
+            <div id="character-container">
+                <img id="anglerfish" src="스크린샷_2025-07-25_231308-removebg-preview.png" alt="아귀">
+            </div>
+
+            <div id="message-box" class="hidden">
+                <p id="message-text"></p>
+            </div>
+        </div>
+        
+        <div id="end-screen" class="hidden">
+            <h2 id="end-message"></h2>
+            <button id="restart-button">다시 시작</button>
+        </div>
+    </div>
+    <div class="bubble-container"></div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
