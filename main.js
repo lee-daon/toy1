@@ -176,6 +176,10 @@ function selectAnswer(selectedOption) {
         }, 200);
         
         showMessage(messages.wrong, () => {
+            // 틀렸을 때 1번 문제로 초기화
+            currentQuestionIndex = 0;
+            updateProgress(); // 진행도 바 초기화
+            resetCharacterPosition(); // 캐릭터 위치 초기화
             displayQuestion();
             isProcessingAnswer = false; // 처리 완료
         });
