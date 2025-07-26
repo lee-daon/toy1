@@ -9,104 +9,73 @@ export const messages = {
 
 // 원래 질문 리스트의 역순으로 진행
 export const questions = [
+    /*
     {
-        question: "질문 1",
+        question: "질문 ",
         options: ["a", "b", "c"],
         answer: "a"
     },
     {
-        question: "질문 2",
-        options: ["a", "b", "c"],
-        answer: "a"
-    },
-    {
-        question: "질문 3",
-        options: ["a", "b", "c"],
-        answer: "a"
-    },
-    {
-        question: "질문 4",
-        options: ["a", "b", "c"],
-        answer: "a"
-    },
-    {
-        question: "질문 5",
+        question: "질문 ",
         type: "input", // 인풋 타입 질문
         answer: "a"
     },
+    */
+    
     {
-        question: "질문 6",
-        options: ["a", "b", "c"],
-        answer: "a"
-    },
-    {
-        question: "질문 7",
+        question: "1. 출발!! 심해로!!이제 겨우 100m 내려왔네ㅜㅜ 여기는 태양에너지도 들어오고 바람의 영향으로 해수도 잘 섞이네. 이 층의 이름은 무엇이라고 해야 할까? ",
         type: "input", // 인풋 타입 질문
-        answer: "a"
+        answer: "혼합층"
     },
     {
-        question: "질문 8",
-        options: ["a", "b", "c"],
-        answer: "a"
+        question: "2. 혼합층에서는 더 깊이 내려가면 해수의 온도가 어떻게 변할까?",
+        options: ["1) 더 높아질 거야", "2) 더 낮아질 거야", "3) 변화가 없을 거야"],
+        answer: "3) 변화가 없을 거야"
     },
     {
-        question: "질문 3",
-        options: ["a", "b", "c"],
-        answer: "a"
+        question: "3. 바람이 더 강하게 분다면 혼합층은 어떻게 될까?",
+        options: ["1) 더 두꺼워질 거야", "2) 더 얇아질 거야", "3) 변화가 없을 거야"],
+        answer: "1) 더 두꺼워질 거야"
     },
     {
-        question: "질문 4",
-        options: ["a", "b", "c"],
-        answer: "a"
-    },
-    {
-        question: "질문 5",
+        question: "4. 앗 드디어 500m 내려왔어. 여기는 태양에너지는 조금 들어오는데 바람의 영향이 없네. 이 층의 이름은 무엇이라고 해야 할까? ",
         type: "input", // 인풋 타입 질문
-        answer: "a"
+        answer: "수온약층"
     },
     {
-        question: "질문 6",
-        options: ["a", "b", "c"],
-        answer: "a"
+        question: "5. 수온약층에서는 더 깊이 내려가면 해수의 온도가 어떻게 변할까? ",
+        options: ["1) 더 높아질 거야 ", "2) 더 낮아질 거야", "3) 변화가 없을 거야"],
+        answer: "2) 더 낮아질 거야"
     },
     {
-        question: "질문 7",
+        question: "6. 수온약층에서는 어떤 현상이 생길까? ",
+        options: ["1) 대류운동이 활발할 거야 ", "2) 위아래로 해수가 잘 섞일 거야 ", "3) 해수의 상하운동이 없을 거야","4) 아래쪽의 수온이 위쪽의 수온보다 높을 거야"],
+        answer: "3) 해수의 상하운동이 없을 거야"
+    },
+    {
+        question: "7. 드디어 1,000m 아래에 도착했어. 이곳은 햇빛의 영향이 없어서 추운 곳이야. 이층의 이름은 무엇이라고 해야 할까? ",
         type: "input", // 인풋 타입 질문
-        answer: "a"
+        answer: "심해층"
     },
     {
-        question: "질문 8",
-        options: ["a", "b", "c"],
-        answer: "a"
+        question: "8. 나의 고향인 심해층에 대해 알려줄게. 내가 실수로 잘못 알려준 것이 있으면 찾아봐",
+        options: ["1) 계절에 따른 온도변화가 거의 없어.", "2) 태양에너지의 영향을 받지 않아.", "3) 저위도 지방의 수온이 고위도지방의 수온보다 높아.", "4) 깊이에 따른 수온 변화가 나타나지 않아."],
+        answer: "3) 저위도 지방의 수온이 고위도지방의 수온보다 높아."
     },
     {
-        question: "질문 3",
-        options: ["a", "b", "c"],
-        answer: "a"
+        question: "이제 집이 보이는군. 그동안 지나오면서 겪었던 일들이 생각나는군. 그런데 깊이에 따른 온도변화가 가장 크게 나타났던 층은 어디였더라?",
+        options: ["1) 혼합층 ", "2) 수온약층", "3) 심해층"],
+        answer: "2) 수온약층"
     },
     {
-        question: "질문 4",
-        options: ["a", "b", "c"],
-        answer: "a"
+        question: "10. 아래쪽의 수온이 위쪽의 수온보다 낮아서 물이 잘 섞이지 않던 층은 어디였더라? ",
+        options: ["1) 혼합층 ", "2) 수온약층", "3) 심해층"],
+        answer: "2) 수온약층"
     },
-    {
-        question: "질문 5",
-        type: "input", // 인풋 타입 질문
-        answer: "a"
-    },
-    {
-        question: "질문 6",
-        options: ["a", "b", "c"],
-        answer: "a"
-    },
-    {
-        question: "질문 7",
-        type: "input", // 인풋 타입 질문
-        answer: "a"
-    },
-    {
-        question: "질문 8",
-        options: ["a", "b", "c"],
-        answer: "a"
-    }
+    
+    
+
+    
+    
+
 ]; 
